@@ -7,17 +7,12 @@ import { signOutUser } from '../../utils/firebase.utils'
 import { CartIcon } from '../../components/cart-icon/cart-icon.component'
 import { CartDropdown } from '../../components/cart-dropdown/cart-dropdown.component'
 import { CartDropdownContext } from '../../contexts/cart-dropdown.context'
-import Button from '../../components/button/button.component'
 
 
 const Navigation = () => {
     const { currenUser } = useContext(UserContext)
-    const {cartDropdown, setCartDropdown} = useContext(CartDropdownContext)
-    const cartDropdownHandler = () => {
-        cartDropdown?
-        setCartDropdown(false):
-        setCartDropdown(true)
-    }
+    const {cartDropdown} = useContext(CartDropdownContext)
+ 
    
     return (
         <Fragment>
@@ -37,9 +32,8 @@ const Navigation = () => {
                     Sign In
                 </Link>}
                 <CartIcon />
-                <Button onClick={cartDropdownHandler}>Test</Button>
                 </div>
-                {cartDropdown? <CartDropdown/>: ""}
+                {cartDropdown && <CartDropdown/>}
             </div>
             <Outlet />
         </Fragment>
