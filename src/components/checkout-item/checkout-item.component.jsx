@@ -6,7 +6,7 @@ import { CartDropdownContext } from '../../contexts/cart-dropdown.context'
 
 export const CheckoutItem = ({ product }) => {
     const {decreaseItemFromCart, addItemToCart, removeItemFromCart} = useContext(CartDropdownContext)
-    const { id, name, imageUrl, price, quantity } = product
+    const { name, imageUrl, price, quantity } = product
     const handleAmountIncrease = () => addItemToCart(product)
     const handleAmountDecrease = () => decreaseItemFromCart(product)
     const handleRemoveFromCart = () => removeItemFromCart(product)
