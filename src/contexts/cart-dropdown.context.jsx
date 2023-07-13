@@ -13,17 +13,19 @@ const addCardItem = (cartItems, productToAdd) => {
 
 const decreaseCardItem = (cartItems, productToDecrease) => {
     let productIndex = cartItems.findIndex(product => product.id === productToDecrease.id)
-    if (cartItems[productIndex].quantity !== 0) {
+    if (cartItems[productIndex].quantity > 1) {
         cartItems[productIndex].quantity -= 1
         return [...cartItems]
     } else {
-        return ///REMOVE ITEM/// 
+        cartItems.splice(productIndex, 1)
+        return [...cartItems]
     }
 }
 
 const removeCartItem = (cartItems, productToRemove) => {
-    console.log("removed item")
-    ////REMOVE ITEM
+    let productIndex = cartItems.findIndex(product => product.id === productToRemove.id)
+    cartItems.splice(productIndex, 1)
+    return [...cartItems]
 }
 
 export const CartDropdownContext = createContext({

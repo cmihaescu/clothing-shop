@@ -5,6 +5,8 @@
     align-items: center;
     width: 80%;
     margin: 20px auto;
+    padding: 10px 10px 0 10px;
+
 span{
     width: 20%;
     text-align: center;
@@ -17,4 +19,8 @@ span{
     height: 12px;
     margin: 0 5px;
     cursor: pointer;
+}
+
+h3{
+    text-align: center;
 }
