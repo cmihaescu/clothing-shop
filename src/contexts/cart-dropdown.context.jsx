@@ -30,7 +30,6 @@ const removeCartItem = (cartItems, productToRemove) => {
 export const CartDropdownContext = createContext({
     cartDropdown: null,
     cartItems: [],
-    addItemToCart: () => { },
     totalItems: 0,
     totalPrice: 0,
 })
