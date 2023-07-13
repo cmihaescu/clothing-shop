@@ -18,7 +18,7 @@ export const Checkout = () => {
                         <span>Remove</span>
                     </div>
                     {cartItems.map((item) => <CheckoutItem key={item.id} product={item} />)}
-                    <div>
+                    <div className="totalPriceBox">
                         TOTAL: ${totalPrice}
                     </div>
                 </>

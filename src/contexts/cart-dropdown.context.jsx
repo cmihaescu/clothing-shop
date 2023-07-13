@@ -17,8 +17,7 @@ const decreaseCardItem = (cartItems, productToDecrease) => {
         cartItems[productIndex].quantity -= 1
         return [...cartItems]
     } else {
-        cartItems.splice(productIndex, 1)
-        return [...cartItems]
+       return removeCartItem(cartItems, productToDecrease)
     }
 }
 
