@@ -4,6 +4,7 @@ import { CheckoutItem } from "../../components/checkout-item/checkout-item.compo
 import './checkout.styles.scss'
 
 export const Checkout = () => {
+    const {currency} = useContext(CartDropdownContext)
 
     const { cartItems, totalPrice } = useContext(CartDropdownContext)
     return (
@@ -19,7 +20,7 @@ export const Checkout = () => {
                     </div>
                     {cartItems.map((item) => <CheckoutItem key={item.id} product={item} />)}
                     <div className="totalPriceBox">
-                        TOTAL: ${totalPrice}
+                        TOTAL: {totalPrice} {currency}
                     </div>
                 </>
                 :

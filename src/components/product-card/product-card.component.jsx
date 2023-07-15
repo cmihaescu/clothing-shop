@@ -5,7 +5,7 @@ import { CartDropdownContext } from '../../contexts/cart-dropdown.context'
 
 export const ProductCard = ({product}) => {
     const {name, price, imageUrl} = product
-    const {addItemToCart} = useContext(CartDropdownContext)
+    const {addItemToCart, currency} = useContext(CartDropdownContext)
     const addProductToCart = () => addItemToCart(product) 
 
     return(
@@ -13,7 +13,7 @@ export const ProductCard = ({product}) => {
         <img src={imageUrl} alt={`${name}`}></img>
         <div className='footer'>
             <span className='name'>{name}</span>
-            <span className='price'> {price}$ </span>
+            <span className='price-and-currency'> {price} &nbsp; {currency}</span>
         </div>
         <Button buttonType="inverted" onClick={addProductToCart} >Add to cart</Button>
     </div>

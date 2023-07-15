@@ -17,7 +17,7 @@ const decreaseCardItem = (cartItems, productToDecrease) => {
         cartItems[productIndex].quantity -= 1
         return [...cartItems]
     } else {
-       return removeCartItem(cartItems, productToDecrease)
+        return removeCartItem(cartItems, productToDecrease)
     }
 }
 
@@ -32,6 +32,7 @@ export const CartDropdownContext = createContext({
     cartItems: [],
     totalItems: 0,
     totalPrice: 0,
+    currency: "USD"
 })
 
 export const CartDropdownProvider = ({ children }) => {
@@ -39,6 +40,7 @@ export const CartDropdownProvider = ({ children }) => {
     const [totalItems, setTotalItems] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
     const [cartItems, setCartItems] = useState([])
+    const [currency, setCurrency] = useState("USD")
 
     const addItemToCart = (productToAdd) => {
         setCartItems(addCardItem(cartItems, productToAdd))
@@ -51,7 +53,12 @@ export const CartDropdownProvider = ({ children }) => {
     const removeItemFromCart = (productToRemove) => {
         setCartItems(removeCartItem(cartItems, productToRemove))
     }
-    const value = { cartDropdown, setCartDropdown, cartItems, addItemToCart, decreaseItemFromCart, removeItemFromCart, totalItems, totalPrice, setTotalItems }
+    const value = {
+        cartDropdown, setCartDropdown,
+        cartItems, addItemToCart, decreaseItemFromCart, removeItemFromCart,
+        totalItems, setTotalItems,
+        totalPrice, currency, setCurrency
+    }
 
     useEffect(() => {
         setTotalItems(cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0))

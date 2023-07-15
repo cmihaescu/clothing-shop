@@ -7,13 +7,14 @@ import { signOutUser } from '../../utils/firebase.utils'
 import { CartIcon } from '../../components/cart-icon/cart-icon.component'
 import { CartDropdown } from '../../components/cart-dropdown/cart-dropdown.component'
 import { CartDropdownContext } from '../../contexts/cart-dropdown.context'
+import CurrencySwitcher from '../../components/currency-switcher/currency-switcher.component'
 
 
 const Navigation = () => {
     const { currenUser } = useContext(UserContext)
-    const {cartDropdown} = useContext(CartDropdownContext)
- 
-   
+    const { cartDropdown } = useContext(CartDropdownContext)
+
+
     return (
         <Fragment>
             <div className='navigation'>
@@ -27,16 +28,17 @@ const Navigation = () => {
                     <Link className='nav-link' to='shop'>
                         Shop
                     </Link>
-                    {currenUser?
-                    <Link className='nav-link' onClick={signOutUser}>
-                        Sign Out
-                    </Link>
-                    : <Link className='nav-link' to='authentication'>
-                    Sign In
-                </Link>}
-                <CartIcon />
+                    {currenUser ?
+                        <Link className='nav-link' onClick={signOutUser}>
+                            Sign Out
+                        </Link>
+                        : <Link className='nav-link' to='authentication'>
+                            Sign In
+                        </Link>}
+                    <CartIcon />
+                    <CurrencySwitcher />
                 </div>
-                {cartDropdown && <CartDropdown/>}
+                {cartDropdown && <CartDropdown />}
             </div>
             <Outlet />
         </Fragment>
