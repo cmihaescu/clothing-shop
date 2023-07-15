@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const DirectoryItem = ({ category }) => {
     const { imageUrl, title } = category
     const navigate = useNavigate();
-    const navigateToShop = () => { navigate("/shop") }
+    const navigateToShop = () => { navigate(`/shop/${title}`) }
 
     return (
 

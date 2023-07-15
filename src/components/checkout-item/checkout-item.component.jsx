@@ -6,7 +6,7 @@ import { useContext } from 'react'
 import { CartDropdownContext } from '../../contexts/cart-dropdown.context'
 
 export const CheckoutItem = ({ product }) => {
-    const { decreaseItemFromCart, addItemToCart, removeItemFromCart } = useContext(CartDropdownContext)
+    const { decreaseItemFromCart, addItemToCart, removeItemFromCart, currency } = useContext(CartDropdownContext)
     const { name, imageUrl, price, quantity } = product
     const handleAmountIncrease = () => addItemToCart(product)
     const handleAmountDecrease = () => decreaseItemFromCart(product)
@@ -14,7 +14,7 @@ export const CheckoutItem = ({ product }) => {
 
     return (
         <div className="checkout-item-container">
-            <img src={imageUrl} alt={name}></img>
+            <span><img src={imageUrl} alt={name}></img></span>
             <span>{name}</span>
             <div className='quantity-container'>
                 <ArrowLeft onClick={handleAmountDecrease} className="quantity-svg" />
@@ -23,7 +23,7 @@ export const CheckoutItem = ({ product }) => {
                 </span>
                 <ArrowRight onClick={handleAmountIncrease} className="quantity-svg" />
             </div>
-            <span>{price}</span>
+            <span>{price} &nbsp; {currency}</span>
             <span onClick={handleRemoveFromCart}><RemoveIcon className='removeIcon' /></span>
         </div>
     )

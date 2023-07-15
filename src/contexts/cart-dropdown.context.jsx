@@ -40,7 +40,7 @@ export const CartDropdownProvider = ({ children }) => {
     const [totalItems, setTotalItems] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
     const [cartItems, setCartItems] = useState([])
-    const [currency, setCurrency] = useState("USD")
+    const [currency, setCurrency] = useState("EUR")
 
     const addItemToCart = (productToAdd) => {
         setCartItems(addCardItem(cartItems, productToAdd))

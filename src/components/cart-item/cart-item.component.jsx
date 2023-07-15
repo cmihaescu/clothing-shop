@@ -1,16 +1,21 @@
 import { useContext } from 'react'
-import './cart-item.styles.scss'
+import { ReactComponent as RemoveIcon } from '../../assets/remove.svg'
 import { CartDropdownContext } from '../../contexts/cart-dropdown.context'
+import './cart-item.styles.scss'
 
 export const CartItem = ({ cartItem }) => {
     const { name, quantity, imageUrl, price } = cartItem
-    const {currency} = useContext(CartDropdownContext)
+    const {currency, removeItemFromCart} = useContext(CartDropdownContext)
+
+    const handleRemoveFromCart = () => removeItemFromCart(cartItem)
+
     return (
         <div className='cart-item-container'>
             <img src={imageUrl} alt={name}></img>
             <div className='item-details'>
                 <span className='name'>{name}</span>
-                <span className='price'>{quantity} x {currency}{price}</span>
+                <span className='price'>{quantity} x {price}&nbsp;{currency}</span>
+                <span onClick={handleRemoveFromCart}><RemoveIcon className='removeIcon' /></span>
             </div>
         </div>
     )
