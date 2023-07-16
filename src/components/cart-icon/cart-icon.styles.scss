@@ -1,6 +1,6 @@
 .cart-icon-container {
-    width: 45px;
-    height: 45px;
+    width: 70px;
+    height: 70px;
     position: relative;
     display: flex;
     align-items: center;
@@ -8,15 +8,15 @@
     cursor: pointer;
   
     .shopping-icon {
-      width: 24px;
-      height: 24px;
+      width: 35px;
+      height: 35px;
     }
   
     .item-count {
       position: absolute;
-      font-size: 10px;
+      font-size: 15px;
       font-weight: bold;
-      bottom: 12px;
+      bottom: 20px;
     }
   }
   
