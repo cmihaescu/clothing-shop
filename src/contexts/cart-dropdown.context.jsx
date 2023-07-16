@@ -1,16 +1,14 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
-/////// REDUX LOGIC ///////
+/////// REDUX LOGIC START ///////
 
 const USER_ACTION_TYPES = {
     SET_CURRENCY: "SET_CURRENCY",
     SET_CART_DROPDOWN: "SET_CART_DROPDOWN",
-    SET_TOTAL_ITEMS:"SET_TOTAL_ITEMS",
-    SET_TOTAL_PRICE:"SET_TOTAL_PRICE",
-    SET_CART_ITEMS:"SET_CART_ITEMS"
+    UPDATE_CART_ITEMS: "UPDATE_CART_ITEMS"
 }
 
-const { SET_CURRENCY, SET_CART_DROPDOWN, SET_TOTAL_ITEMS, SET_TOTAL_PRICE, SET_CART_ITEMS } = USER_ACTION_TYPES
+const { SET_CURRENCY, SET_CART_DROPDOWN, UPDATE_CART_ITEMS } = USER_ACTION_TYPES
 
 const INITIAL_STATE = {
     cartDropdown: null,
@@ -34,20 +32,13 @@ const cartReducer = (state, action) => {
                 ...state,
                 cartDropdown: payload
             }
-        case SET_TOTAL_ITEMS:
+        case UPDATE_CART_ITEMS:
+            const {cartItems, totalItems, totalPrice} = payload
             return {
                 ...state,
-                totalItems:payload
-            }
-        case SET_TOTAL_PRICE:
-            return {
-                ...state,
-                totalPrice:payload
-            }
-        case SET_CART_ITEMS:
-            return {
-                ...state,
-                cartItems:payload
+                cartItems: cartItems,
+                totalItems: totalItems,
+                totalPrice: totalPrice
             }
         default:
             throw new Error(`Unhandled type ${type} in cartReducer`)
@@ -55,7 +46,7 @@ const cartReducer = (state, action) => {
 
 }
 
-/////// REDUX LOGIC ///////
+/////// REDUX LOGIC END ///////
 
 const addCardItem = (cartItems, productToAdd) => {
     let productIndex = cartItems.findIndex(product => product.id === productToAdd.id)
@@ -94,55 +85,57 @@ export const CartDropdownContext = createContext({
 
 export const CartDropdownProvider = ({ children }) => {
 
-    /////// REDUX LOGIC ///////
+    /////// REDUX LOGIC START ///////
     const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE)
 
-    const {currency, cartDropdown, totalItems, totalPrice, cartItems} = state
+    const { currency, cartDropdown, totalItems, totalPrice, cartItems } = state
 
     const setCurrency = (currency) => {
         dispatch({ type: SET_CURRENCY, payload: currency })
     }
 
     const setCartDropdown = (cartDropdown) => {
-        dispatch({type:SET_CART_DROPDOWN, payload:cartDropdown})
+        dispatch({ type: SET_CART_DROPDOWN, payload: cartDropdown })
     }
 
-    const setTotalItems = (totalItems) => {
-        dispatch({type:SET_TOTAL_ITEMS, payload:totalItems})
-    }
+    const updateCartItemsReducer = (newCartItems) => {
+         let totalItems = newCartItems.reduce((total, cartItem) => total + cartItem.quantity, 0)
+         let totalPrice = newCartItems.reduce((total, cartItem) => total + cartItem.quantity * cartItem.price, 0)
 
-    const setTotalPrice = (totalPrice) => {
-        dispatch({type:SET_TOTAL_PRICE, payload:totalPrice})
+        let payload = {
+            totalItems,
+            totalPrice,
+            cartItems: newCartItems
+        }
+        dispatch({ type: UPDATE_CART_ITEMS, payload })
     }
+    /////// REDUX LOGIC END ///////
 
-    const setCartItems = (cartItems)=> {
-        dispatch({type:SET_CART_ITEMS, payload:cartItems})
-    }
-    /////// REDUX LOGIC ///////
 
     const addItemToCart = (productToAdd) => {
-        setCartItems(addCardItem(cartItems, productToAdd))
+        const newCartItems = addCardItem(cartItems, productToAdd)
+        updateCartItemsReducer(newCartItems)
     }
 
     const decreaseItemFromCart = (productToDecrease) => {
-        setCartItems(decreaseCardItem(cartItems, productToDecrease))
+        const newCartItems = decreaseCardItem(cartItems, productToDecrease)
+        updateCartItemsReducer(newCartItems)
+
     }
 
     const removeItemFromCart = (productToRemove) => {
-        setCartItems(removeCartItem(cartItems, productToRemove))
+        const newCartItems = removeCartItem(cartItems, productToRemove)
+        updateCartItemsReducer(newCartItems)
+
     }
     const value = {
         cartDropdown, setCartDropdown,
         cartItems, addItemToCart, decreaseItemFromCart, removeItemFromCart,
-        totalItems, setTotalItems,
-        totalPrice, 
+        totalItems,
+        totalPrice,
         currency, setCurrency
     }
 
-    useEffect(() => {
-        setTotalItems(cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0))
-        setTotalPrice(cartItems.reduce((total, cartItem) => total + cartItem.quantity * cartItem.price, 0))
-    }, [cartItems])
 
     return <CartDropdownContext.Provider value={value}>{children}</CartDropdownContext.Provider>
 
