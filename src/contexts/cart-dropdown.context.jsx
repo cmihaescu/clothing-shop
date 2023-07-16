@@ -1,4 +1,61 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
+
+/////// REDUX LOGIC ///////
+
+const USER_ACTION_TYPES = {
+    SET_CURRENCY: "SET_CURRENCY",
+    SET_CART_DROPDOWN: "SET_CART_DROPDOWN",
+    SET_TOTAL_ITEMS:"SET_TOTAL_ITEMS",
+    SET_TOTAL_PRICE:"SET_TOTAL_PRICE",
+    SET_CART_ITEMS:"SET_CART_ITEMS"
+}
+
+const { SET_CURRENCY, SET_CART_DROPDOWN, SET_TOTAL_ITEMS, SET_TOTAL_PRICE, SET_CART_ITEMS } = USER_ACTION_TYPES
+
+const INITIAL_STATE = {
+    cartDropdown: null,
+    cartItems: [],
+    totalItems: 0,
+    totalPrice: 0,
+    currency: "EUR"
+}
+
+const cartReducer = (state, action) => {
+    const { type, payload } = action;
+
+    switch (type) {
+        case SET_CURRENCY:
+            return {
+                ...state,
+                currency: payload
+            }
+        case SET_CART_DROPDOWN:
+            return {
+                ...state,
+                cartDropdown: payload
+            }
+        case SET_TOTAL_ITEMS:
+            return {
+                ...state,
+                totalItems:payload
+            }
+        case SET_TOTAL_PRICE:
+            return {
+                ...state,
+                totalPrice:payload
+            }
+        case SET_CART_ITEMS:
+            return {
+                ...state,
+                cartItems:payload
+            }
+        default:
+            throw new Error(`Unhandled type ${type} in cartReducer`)
+    }
+
+}
+
+/////// REDUX LOGIC ///////
 
 const addCardItem = (cartItems, productToAdd) => {
     let productIndex = cartItems.findIndex(product => product.id === productToAdd.id)
@@ -36,11 +93,32 @@ export const CartDropdownContext = createContext({
 })
 
 export const CartDropdownProvider = ({ children }) => {
-    const [cartDropdown, setCartDropdown] = useState(false)
-    const [totalItems, setTotalItems] = useState(0)
-    const [totalPrice, setTotalPrice] = useState(0)
-    const [cartItems, setCartItems] = useState([])
-    const [currency, setCurrency] = useState("EUR")
+
+    /////// REDUX LOGIC ///////
+    const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE)
+
+    const {currency, cartDropdown, totalItems, totalPrice, cartItems} = state
+
+    const setCurrency = (currency) => {
+        dispatch({ type: SET_CURRENCY, payload: currency })
+    }
+
+    const setCartDropdown = (cartDropdown) => {
+        dispatch({type:SET_CART_DROPDOWN, payload:cartDropdown})
+    }
+
+    const setTotalItems = (totalItems) => {
+        dispatch({type:SET_TOTAL_ITEMS, payload:totalItems})
+    }
+
+    const setTotalPrice = (totalPrice) => {
+        dispatch({type:SET_TOTAL_PRICE, payload:totalPrice})
+    }
+
+    const setCartItems = (cartItems)=> {
+        dispatch({type:SET_CART_ITEMS, payload:cartItems})
+    }
+    /////// REDUX LOGIC ///////
 
     const addItemToCart = (productToAdd) => {
         setCartItems(addCardItem(cartItems, productToAdd))
@@ -57,7 +135,8 @@ export const CartDropdownProvider = ({ children }) => {
         cartDropdown, setCartDropdown,
         cartItems, addItemToCart, decreaseItemFromCart, removeItemFromCart,
         totalItems, setTotalItems,
-        totalPrice, currency, setCurrency
+        totalPrice, 
+        currency, setCurrency
     }
 
     useEffect(() => {
