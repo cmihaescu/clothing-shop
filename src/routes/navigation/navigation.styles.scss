@@ -8,11 +8,13 @@
     .logo-container {
       height: 100%;
       width: 70px;
-      padding: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .logo {
-        width: 45px;
+        width: 70px;
         height: auto;
     }
   
@@ -21,11 +23,19 @@
       height: 100%;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-  
+      justify-content: space-evenly;
+
       .nav-link {
         padding: 10px 15px;
         cursor: pointer;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        transition: 0.3s;
+        
+        &:hover{
+          background-color: #000;  
+          color: #fff;
+        }
       }
     }
   }
