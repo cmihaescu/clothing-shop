@@ -2,19 +2,18 @@ import './navigation.styles.scss'
 import { Fragment, useContext } from 'react'
 import { Outlet, Link } from 'react-router-dom'
 import { ReactComponent as RevolutLogo } from '../../assets/revolut.svg'
-import { UserContext } from '../../contexts/user.context'
 import { signOutUser } from '../../utils/firebase.utils'
 import { CartIcon } from '../../components/cart-icon/cart-icon.component'
 import { CartDropdown } from '../../components/cart-dropdown/cart-dropdown.component'
 import { CartDropdownContext } from '../../contexts/cart-dropdown.context'
 import CurrencySwitcher from '../../components/currency-switcher/currency-switcher.component'
+import { useSelector } from 'react-redux'
+import { selectCurrentUser } from '../../store/user/user-selector'
 
 
 const Navigation = () => {
-    const { currenUser } = useContext(UserContext)
+    const currentUser = useSelector(selectCurrentUser)
     const { cartDropdown } = useContext(CartDropdownContext)
-
-
     return (
         <Fragment>
             <div className='navigation'>
@@ -28,7 +27,7 @@ const Navigation = () => {
                     <Link className='nav-link' to='shop'>
                         Shop
                     </Link>
-                    {currenUser ?
+                    {currentUser ?
                         <Link className='nav-link' onClick={signOutUser}>
                             Sign Out
                         </Link>
