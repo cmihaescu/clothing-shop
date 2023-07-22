@@ -48,9 +48,7 @@ export const updateCartItemsReducer = (newCartItems) => {
         totalPrice,
         cartItems: newCartItems
     }
-    console.log("updateCartItemsReducer fired")
     return ({type:UPDATE_CART_ITEMS, payload})
-    // dispatch({ type: UPDATE_CART_ITEMS, payload })
 }
 
 const addCardItem = (cartItems, productToAdd) => {
@@ -82,16 +80,13 @@ const removeCartItem = (cartItems, productToRemove) => {
 
 
 export const addItemToCart = (cartItems, productToAdd) => {
-    console.log("addItemToCart fired")
     return addCardItem(cartItems, productToAdd)
 }
 
 export const decreaseItemFromCart = (cartItems, productToDecrease) => {
-    console.log("decreaseItemFromCart fired")
     return decreaseCardItem(cartItems, productToDecrease)
 }
 
 export const removeItemFromCart = (cartItems, productToRemove) => {
-    console.log("removeItemFromCart fired")
     return removeCartItem(cartItems, productToRemove)
 }
