@@ -11,9 +11,9 @@ const CategoriesPreview = () => {
             {Object.keys(categoriesMap).map(title =>
                 <CategoryPreview title={title} products={categoriesMap[title]} />
             )}
-
         </Fragment>
     )
 }
 
 export default CategoriesPreview
+
