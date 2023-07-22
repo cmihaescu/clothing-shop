@@ -4,10 +4,13 @@ import { ReactComponent as RemoveIcon } from '../../assets/remove.svg'
 import './checkout-item.styles.scss'
 import { useContext } from 'react'
 import { CartDropdownContext } from '../../contexts/cart-dropdown.context'
+import { useSelector } from 'react-redux'
+import { currencySelector } from '../../store/cart/cart-selectors'
 
 export const CheckoutItem = ({ product }) => {
-    const { decreaseItemFromCart, addItemToCart, removeItemFromCart, currency } = useContext(CartDropdownContext)
+    const { decreaseItemFromCart, addItemToCart, removeItemFromCart } = useContext(CartDropdownContext)
     const { name, imageUrl, price, quantity } = product
+    const currency = useSelector(currencySelector)
     const handleAmountIncrease = () => addItemToCart(product)
     const handleAmountDecrease = () => decreaseItemFromCart(product)
     const handleRemoveFromCart = () => removeItemFromCart(product)

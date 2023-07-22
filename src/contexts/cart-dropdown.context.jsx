@@ -2,13 +2,13 @@ import { createContext, useReducer } from "react";
 
 /////// REDUX LOGIC START ///////
 
-const USER_ACTION_TYPES = {
+const CART_ACTION_TYPES = {
     SET_CURRENCY: "SET_CURRENCY",
     SET_CART_DROPDOWN: "SET_CART_DROPDOWN",
     UPDATE_CART_ITEMS: "UPDATE_CART_ITEMS"
 }
 
-const { SET_CURRENCY, SET_CART_DROPDOWN, UPDATE_CART_ITEMS } = USER_ACTION_TYPES
+const { SET_CURRENCY, SET_CART_DROPDOWN, UPDATE_CART_ITEMS } = CART_ACTION_TYPES
 
 const INITIAL_STATE = {
     cartDropdown: null,
@@ -41,7 +41,7 @@ const cartReducer = (state, action) => {
                 totalPrice: totalPrice
             }
         default:
-            throw new Error(`Unhandled type ${type} in cartReducer`)
+            throw new Error(`Unhandled type ${type} in cartReducer from cart context component`)
     }
 
 }
@@ -90,9 +90,9 @@ export const CartDropdownProvider = ({ children }) => {
 
     const { currency, cartDropdown, totalItems, totalPrice, cartItems } = state
 
-    const setCurrency = (currency) => {
-        dispatch({ type: SET_CURRENCY, payload: currency })
-    }
+    // const setCurrency = (currency) => {
+    //     dispatch({ type: SET_CURRENCY, payload: currency })
+    // }
 
     const setCartDropdown = (cartDropdown) => {
         dispatch({ type: SET_CART_DROPDOWN, payload: cartDropdown })
@@ -133,7 +133,7 @@ export const CartDropdownProvider = ({ children }) => {
         cartItems, addItemToCart, decreaseItemFromCart, removeItemFromCart,
         totalItems,
         totalPrice,
-        currency, setCurrency
+        // currency, setCurrency
     }
 
 

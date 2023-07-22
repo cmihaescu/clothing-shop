@@ -1,13 +1,16 @@
 import { useContext } from 'react'
 import './currency-switcher.styles.scss'
 import { CartDropdownContext } from '../../contexts/cart-dropdown.context'
+import { useDispatch } from 'react-redux'
+import {setCurrency} from '../../store/cart/cart-actions'
 
 const CurrencySwitcher = () => {
     const currencyArray = ["EUR", "USD", "GBP", "AED", "AUD", "BGN", "CAD", "CHF", "CZK", "DKK", "HKD", "HUF", "ILS", "ISK", "JPY", "MXN", "NOK", "NZD", "PLN", "QAR", "RON", "SAR", "SEK", "SGD", "THB", "TRY", "ZAR"]
-    const { setCurrency } = useContext(CartDropdownContext)
+    // const { setCurrency } = useContext(CartDropdownContext)
+    const dispatch =useDispatch()
 
     const handleCurrencyChange = (e) => {
-        setCurrency(e.target.value)
+        dispatch(setCurrency(e.target.value))
     }
     return (
         <div className='currency-switcher-container'>
