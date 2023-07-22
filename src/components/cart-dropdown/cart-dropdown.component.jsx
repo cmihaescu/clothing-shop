@@ -11,21 +11,24 @@ export const CartDropdown = () => {
     const cartDropdown = useSelector(selectCartDropdown)
     const cartItems = useSelector(selectCartItems)
     const handleCheckoutButtonClick = () => {
-       dispatch(setCartDropdown(!cartDropdown))
+        dispatch(setCartDropdown(!cartDropdown))
+    }
+    const handleCloseMinicart = () => {
+        dispatch(setCartDropdown(false))
     }
 
     return (
         <div className='cart-dropdown-container'>
             <div className='cart-items'>
-
-                {cartItems.length>0? 
-                cartItems.map(item => <CartItem key={item.id} cartItem={item} />)
-                :<span className='empty-cart-message'>Your cart is empty</span>
-            }
+                {cartItems.length > 0 ?
+                    cartItems.map(item => <CartItem key={item.id} cartItem={item} />)
+                    : <span className='empty-cart-message'>Your cart is empty</span>
+                }
             </div>
             <Link to={'checkout'}>
                 <Button onClick={handleCheckoutButtonClick} type=''> GO TO CHECKOUT</Button>
             </Link>
+            <span className='close-minicart' onClick={handleCloseMinicart}> Close Minicart </span>
         </div>
     )
 }
