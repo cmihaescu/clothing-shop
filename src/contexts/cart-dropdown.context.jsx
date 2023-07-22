@@ -129,7 +129,7 @@ export const CartDropdownProvider = ({ children }) => {
 
     }
     const value = {
-        cartDropdown, setCartDropdown,
+        // cartDropdown, setCartDropdown,
         cartItems, addItemToCart, decreaseItemFromCart, removeItemFromCart,
         totalItems,
         totalPrice,
