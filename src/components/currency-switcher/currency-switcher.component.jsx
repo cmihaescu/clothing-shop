@@ -1,10 +1,10 @@
 import './currency-switcher.styles.scss'
 import { useDispatch } from 'react-redux'
-import {setCurrency} from '../../store/cart/cart-actions'
+import { setCurrency } from '../../store/cart/cart-actions'
 
 const CurrencySwitcher = () => {
     const currencyArray = ["EUR", "USD", "GBP", "AED", "AUD", "BGN", "CAD", "CHF", "CZK", "DKK", "HKD", "HUF", "ILS", "ISK", "JPY", "MXN", "NOK", "NZD", "PLN", "QAR", "RON", "SAR", "SEK", "SGD", "THB", "TRY", "ZAR"]
-    const dispatch =useDispatch()
+    const dispatch = useDispatch()
 
     const handleCurrencyChange = (e) => {
         dispatch(setCurrency(e.target.value))

@@ -1,16 +1,16 @@
-import { useContext } from 'react'
 import { ReactComponent as RemoveIcon } from '../../assets/remove.svg'
-import { CartDropdownContext } from '../../contexts/cart-dropdown.context'
 import './cart-item.styles.scss'
-import { useSelector } from 'react-redux'
-import { currencySelector } from '../../store/cart/cart-selectors'
+import { useSelector, useDispatch } from 'react-redux'
+import { currencySelector, cartItemsSelector } from '../../store/cart/cart-selectors'
+import { removeItemFromCart, updateCartItemsReducer } from '../../store/cart/cart-reducer'
 
 export const CartItem = ({ cartItem }) => {
     const { name, quantity, imageUrl, price } = cartItem
-    const { removeItemFromCart} = useContext(CartDropdownContext)
     const currency = useSelector(currencySelector)
+    const cartItems = useSelector(cartItemsSelector)
+    const dispatch = useDispatch()
 
-    const handleRemoveFromCart = () => removeItemFromCart(cartItem)
+    const handleRemoveFromCart = () => dispatch(updateCartItemsReducer(removeItemFromCart(cartItems, cartItem)))
 
     return (
         <div className='cart-item-container'>

@@ -2,18 +2,18 @@ import { ReactComponent as ArrowRight } from '../../assets/round-alt-arrow-right
 import { ReactComponent as ArrowLeft } from '../../assets/round-alt-arrow-left-svgrepo-com.svg'
 import { ReactComponent as RemoveIcon } from '../../assets/remove.svg'
 import './checkout-item.styles.scss'
-import { useContext } from 'react'
-import { CartDropdownContext } from '../../contexts/cart-dropdown.context'
-import { useSelector } from 'react-redux'
-import { currencySelector } from '../../store/cart/cart-selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { currencySelector, cartItemsSelector } from '../../store/cart/cart-selectors'
+import { removeItemFromCart, updateCartItemsReducer, addItemToCart, decreaseItemFromCart } from '../../store/cart/cart-reducer'
 
 export const CheckoutItem = ({ product }) => {
-    const { decreaseItemFromCart, addItemToCart, removeItemFromCart } = useContext(CartDropdownContext)
     const { name, imageUrl, price, quantity } = product
     const currency = useSelector(currencySelector)
-    const handleAmountIncrease = () => addItemToCart(product)
-    const handleAmountDecrease = () => decreaseItemFromCart(product)
-    const handleRemoveFromCart = () => removeItemFromCart(product)
+    const cartItems = useSelector(cartItemsSelector)
+    const dispatch = useDispatch()
+    const handleAmountIncrease = () => dispatch(updateCartItemsReducer(addItemToCart(cartItems, product)))
+    const handleAmountDecrease = () => dispatch(updateCartItemsReducer(decreaseItemFromCart(cartItems, product)))
+    const handleRemoveFromCart = () => dispatch(updateCartItemsReducer(removeItemFromCart(cartItems, product)))
 
     return (
         <div className="checkout-item-container">

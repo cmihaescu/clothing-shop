@@ -1,5 +1,5 @@
 import './navigation.styles.scss'
-import { Fragment, useContext } from 'react'
+import { Fragment } from 'react'
 import { Outlet, Link } from 'react-router-dom'
 import { ReactComponent as RevolutLogo } from '../../assets/revolut.svg'
 import { signOutUser } from '../../utils/firebase.utils'

@@ -10,3 +10,7 @@ export const setCurrency = (currency) => {
 export const setCartDropdown = (cartDropdown) => {
     return createAction(SET_CART_DROPDOWN, cartDropdown)
 }
+
+export const updateCart = (cart) => {
+    return createAction(UPDATE_CART_ITEMS, cart)
+}
