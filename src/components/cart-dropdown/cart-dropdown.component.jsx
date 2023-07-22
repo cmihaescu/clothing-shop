@@ -1,15 +1,17 @@
-import { useContext } from 'react'
 import Button from '../button/button.component'
 import { CartItem } from '../cart-item/cart-item.component'
 import './cart-dropdown.styles.scss'
-import { CartDropdownContext } from '../../contexts/cart-dropdown.context'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectCartDropdown, selectCartItems } from '../../store/cart/cart-selectors'
+import { setCartDropdown } from '../../store/cart/cart-actions'
 
 export const CartDropdown = () => {
-    const { cartItems, setCartDropdown, cartDropdown } = useContext(CartDropdownContext)
-
+    const dispatch = useDispatch()
+    const cartDropdown = useSelector(selectCartDropdown)
+    const cartItems = useSelector(selectCartItems)
     const handleCheckoutButtonClick = () => {
-        setCartDropdown(!cartDropdown)
+       dispatch(setCartDropdown(!cartDropdown))
     }
 
     return (
