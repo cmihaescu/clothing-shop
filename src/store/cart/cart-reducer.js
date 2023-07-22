@@ -23,8 +23,6 @@ export const cartReducer = (state = CART_INITIAL_STATE, action = {}) => {
                 cartDropdown: payload
             }
         case UPDATE_CART_ITEMS:
-            // const { cartItems, totalItems, totalPrice } = payload
-            console.log("cart reducer payload", payload, "cart items")
             return {
                 ...state,
                 cartItems: payload

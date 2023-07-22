@@ -32,7 +32,6 @@ const removeCartItem = (cartItems, productToRemove) => {
 }
 export const addItemToCart = (cartItems, productToAdd) => {
     const newCartItems = addCardItem(cartItems, productToAdd)
-    console.log("new cart items", newCartItems)
     return createAction(UPDATE_CART_ITEMS, newCartItems)
 }
 

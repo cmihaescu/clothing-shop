@@ -9,9 +9,7 @@ export const selectCartDropdown = createSelector(
 
 export const selectCartItems = createSelector(
     [selectCartReducer],
-    (cart) => 
-    {console.log(cart.cartItems)
-    return cart.cartItems}
+    (cart) => cart.cartItems
 )
 
 export const selectCartTotalItems = createSelector(
