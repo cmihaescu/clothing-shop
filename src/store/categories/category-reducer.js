@@ -1,20 +1,35 @@
 import { CATEGORY_ACTION_TYPES } from "./category-types"
-const {SET_CATEGORIES} = CATEGORY_ACTION_TYPES
+const { FETCH_CATEGORIES_FAILED, FETCH_CATEGORIES_SUCCESS, FETCH_CATEGORIES_START } = CATEGORY_ACTION_TYPES
 
 export const CATEGORIES_INITIAL_STATE = {
-    categories: []
+    categories: [],
+    isLoading: false,
+    error: null
 }
 
 export const categoriesReducer = (state = CATEGORIES_INITIAL_STATE, action = {}) => {
-    const {type, payload} = action
+    const { type, payload } = action
 
-    switch(type){
-        case SET_CATEGORIES:
+    switch (type) {
+        case FETCH_CATEGORIES_START:
             return {
-                ...state, 
-                categories:payload}
+                ...state,
+                isLoading: true
+            }
+        case FETCH_CATEGORIES_SUCCESS:
+            return {
+                ...state,
+                categories: payload,
+                isLoading:false
+            }
+        case FETCH_CATEGORIES_FAILED:
+            return {
+                ...state,
+                isLoading:false,
+                error:payload
+            }
         default:
-        return state
+            return state
     }
 }
 
