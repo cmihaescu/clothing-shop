@@ -6,11 +6,11 @@ import Button from "../../components/button/button.component";
 import { createOrder } from "../../htttp-requests/create-order";
 
 export const Checkout = () => {
-  const { currency } = useContext(CartDropdownContext);
-  const { cartItems, totalPrice } = useContext(CartDropdownContext);
+  const { currency, cartItems, totalPrice, setOrderPublicId, orderPublicId } =
+    useContext(CartDropdownContext);
 
   const handleCreateOrder = () => {
-    createOrder();
+    createOrder(setOrderPublicId, totalPrice, currency);
   };
 
   return (
@@ -32,6 +32,7 @@ export const Checkout = () => {
             <Button buttonType={"default"} onClick={handleCreateOrder}>
               Create order
             </Button>
+            <div>Public ID {orderPublicId}</div>
           </div>
         </>
       ) : (
