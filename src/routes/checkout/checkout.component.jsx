@@ -31,7 +31,6 @@ export const Checkout = () => {
         totalAmount: order_details.amount, // in lowest denomination e.g., cents
         createOrder: async () => {
           try {
-            console.log("currency: ", currency, "totalAmount", totalPrice);
             const order = await axios
               .post("http://localhost:4000/createOrder", order_details)
               .then((res) => {
