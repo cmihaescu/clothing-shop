@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const createOrder = async (setOrderPublicId, totalPrice, currency) => {
+export const createOrder = async (totalPrice, currency) => {
   let order_details = {
     amount: totalPrice * 100,
     currency: `${currency}`,
@@ -9,9 +9,7 @@ export const createOrder = async (setOrderPublicId, totalPrice, currency) => {
   await axios
     .post("http://localhost:4000/createOrder", order_details)
     .then((res) => {
-      console.log(res.data);
-      setOrderPublicId(res.data.public_id);
-      return res.data.public_id;
+      return res.data;
     })
     .catch((error) => console.log(error.message));
 };

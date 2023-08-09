@@ -1,17 +1,59 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartDropdownContext } from "../../contexts/cart-dropdown.context";
 import { CheckoutItem } from "../../components/checkout-item/checkout-item.component";
-import "./checkout.styles.scss";
-import Button from "../../components/button/button.component";
 import { createOrder } from "../../htttp-requests/create-order";
+import RevolutCheckout from "@revolut/checkout";
+import axios from "axios";
+import "./checkout.styles.scss";
 
 export const Checkout = () => {
-  const { currency, cartItems, totalPrice, setOrderPublicId, orderPublicId } =
-    useContext(CartDropdownContext);
+  const { currency, cartItems, totalPrice } = useContext(CartDropdownContext);
 
-  const handleCreateOrder = () => {
-    createOrder(setOrderPublicId, totalPrice, currency);
-  };
+  useEffect(() => {
+    let canceled = false;
+    let revolutPay = null;
+    let order_details = {
+      amount: totalPrice * 100,
+      currency,
+    };
+
+    RevolutCheckout.payments({
+      locale: "en", // Optional, defaults to 'en'
+      mode: "sandbox", // Optional, defaults to 'prod'
+      publicToken: "pk_I0esVl3WyXynj8t3TeEOyAQRHC4I8gmLffztYRy981Gsw4xH", // Merchant public API key
+    }).then((paymentInstance) => {
+      if (canceled) {
+        return;
+      }
+
+      const paymentOptions = {
+        currency, // 3-letter currency code
+        totalAmount: order_details.amount, // in lowest denomination e.g., cents
+        createOrder: async () => {
+          try {
+            console.log("currency: ", currency, "totalAmount", totalPrice);
+            const order = await axios
+              .post("http://localhost:4000/createOrder", order_details)
+              .then((res) => {
+                return res.data;
+              });
+            return { publicId: order.public_id };
+          } catch (error) {
+            console.log("Error creating Revolut payment:", error.message);
+            throw error; // Re-throw the error to be caught by the caller if needed
+          }
+        },
+      };
+
+      revolutPay = paymentInstance.revolutPay;
+      revolutPay.mount(document.getElementById("revolutPay"), paymentOptions);
+    });
+
+    return () => {
+      canceled = true;
+      revolutPay?.destroy();
+    };
+  }, [totalPrice, currency]);
 
   return (
     <div>
@@ -29,10 +71,7 @@ export const Checkout = () => {
           ))}
           <div className="totalPriceBox">
             TOTAL: {totalPrice} {currency}
-            <Button buttonType={"default"} onClick={handleCreateOrder}>
-              Create order
-            </Button>
-            <div>Public ID {orderPublicId}</div>
+            <div className="revolut-button" id="revolutPay"></div>
           </div>
         </>
       ) : (

@@ -48,7 +48,6 @@ export const CartDropdownProvider = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const [currency, setCurrency] = useState("EUR");
-  const [orderPublicId, setOrderPublicId] = useState("");
 
   const addItemToCart = (productToAdd) => {
     setCartItems(addCardItem(cartItems, productToAdd));
@@ -73,8 +72,6 @@ export const CartDropdownProvider = ({ children }) => {
     totalPrice,
     currency,
     setCurrency,
-    orderPublicId,
-    setOrderPublicId,
   };
 
   useEffect(() => {
