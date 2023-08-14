@@ -2,12 +2,11 @@ import { useContext } from "react";
 import Button from "../button/button.component";
 import { CartItem } from "../cart-item/cart-item.component";
 import "./cart-dropdown.styles.scss";
-import { CartDropdownContext } from "../../contexts/cart-dropdown.context";
+import { CartContext } from "../../contexts/cart.context";
 import { Link } from "react-router-dom";
 
 export const CartDropdown = () => {
-  const { cartItems, setCartDropdown, cartDropdown } =
-    useContext(CartDropdownContext);
+  const { cartItems, setCartDropdown, cartDropdown } = useContext(CartContext);
 
   const handleCheckoutButtonClick = () => {
     setCartDropdown(!cartDropdown);

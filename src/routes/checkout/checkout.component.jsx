@@ -1,12 +1,12 @@
 import { useContext, useEffect } from "react";
-import { CartDropdownContext } from "../../contexts/cart-dropdown.context";
+import { CartContext } from "../../contexts/cart.context";
 import { CheckoutItem } from "../../components/checkout-item/checkout-item.component";
 import RevolutCheckout from "@revolut/checkout";
 import axios from "axios";
 import "./checkout.styles.scss";
 
 export const Checkout = () => {
-  const { currency, cartItems, totalPrice } = useContext(CartDropdownContext);
+  const { currency, cartItems, totalPrice } = useContext(CartContext);
 
   useEffect(() => {
     let canceled = false;

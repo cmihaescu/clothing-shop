@@ -33,7 +33,7 @@ const removeCartItem = (cartItems, productToRemove) => {
   return [...cartItems];
 };
 
-export const CartDropdownContext = createContext({
+export const CartContext = createContext({
   cartDropdown: null,
   cartItems: [],
   totalItems: 0,
@@ -41,7 +41,7 @@ export const CartDropdownContext = createContext({
   currency: "USD",
 });
 
-export const CartDropdownProvider = ({ children }) => {
+export const CartProvider = ({ children }) => {
   const [cartDropdown, setCartDropdown] = useState(false);
   const [totalItems, setTotalItems] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -85,9 +85,5 @@ export const CartDropdownProvider = ({ children }) => {
     );
   }, [cartItems]);
 
-  return (
-    <CartDropdownContext.Provider value={value}>
-      {children}
-    </CartDropdownContext.Provider>
-  );
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
