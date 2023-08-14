@@ -39,7 +39,6 @@ export const CartDropdownContext = createContext({
   totalItems: 0,
   totalPrice: 0,
   currency: "USD",
-  orderPublicId: "",
 });
 
 export const CartDropdownProvider = ({ children }) => {

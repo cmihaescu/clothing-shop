@@ -1,6 +1,8 @@
-var express = require("express");
+const express = require("express");
 const axios = require("axios");
-var router = express.Router();
+const router = express.Router();
+
+const API_KEY_SANDBOX = process.env.API_KEY_SANDBOX;
 
 /* Create order */
 router.post("/", function (req, res, next) {
@@ -11,8 +13,7 @@ router.post("/", function (req, res, next) {
     url: "https://sandbox-merchant.revolut.com/api/1.0/orders",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      Authorization:
-        "Bearer sk_Gf389qKEjFSG-zQMlSAd4dV2XmB71FyG_yipnqzf-gIj-0IuNE3erhj1m9T8brXc",
+      Authorization: `Bearer ${API_KEY_SANDBOX}`,
     },
     data: order_details,
   };

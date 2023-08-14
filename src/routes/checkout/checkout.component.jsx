@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import { CartDropdownContext } from "../../contexts/cart-dropdown.context";
 import { CheckoutItem } from "../../components/checkout-item/checkout-item.component";
-import { createOrder } from "../../htttp-requests/create-order";
 import RevolutCheckout from "@revolut/checkout";
 import axios from "axios";
 import "./checkout.styles.scss";
@@ -29,6 +28,11 @@ export const Checkout = () => {
       const paymentOptions = {
         currency, // 3-letter currency code
         totalAmount: order_details.amount, // in lowest denomination e.g., cents
+        redirectUrls: {
+          success: "http://localhost:3000/success",
+          failure: "http://localhost:3000/failure",
+          cancel: "http://localhost:3000/cancellation",
+        },
         createOrder: async () => {
           try {
             const order = await axios
