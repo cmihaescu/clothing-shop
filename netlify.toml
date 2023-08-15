@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"  # Command to build your React app
+  functions = "backend"      # Folder containing Express backend code
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
