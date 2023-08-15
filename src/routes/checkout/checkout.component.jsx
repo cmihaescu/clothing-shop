@@ -29,14 +29,14 @@ export const Checkout = () => {
         currency, // 3-letter currency code
         totalAmount: order_details.amount, // in lowest denomination e.g., cents
         redirectUrls: {
-          success: "http://localhost:3000/success",
+          success: "/success",
           failure: "http://localhost:3000/failure",
           cancel: "http://localhost:3000/cancellation",
         },
         createOrder: async () => {
           try {
             const order = await axios
-              .post("api/createOrder", order_details)
+              .post("/createOrder", order_details)
               .then((res) => {
                 return res.data;
               });
