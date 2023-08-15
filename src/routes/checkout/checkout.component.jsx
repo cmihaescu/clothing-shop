@@ -29,18 +29,21 @@ export const Checkout = () => {
         currency, // 3-letter currency code
         totalAmount: order_details.amount, // in lowest denomination e.g., cents
         redirectUrls: {
-          success: "/success",
-          failure: "http://localhost:3000/failure",
-          cancel: "http://localhost:3000/cancellation",
+          success:
+            "https://revolut-merchant-api-test-shop.netlify.app//success",
+          failure:
+            "https://revolut-merchant-api-test-shop.netlify.app//failure",
+          cancel:
+            "https://revolut-merchant-api-test-shop.netlify.app//cancellation",
         },
         createOrder: async () => {
           try {
-            const order = await axios
-              .post("/createOrder", order_details)
-              .then((res) => {
-                return res.data;
-              });
-            return { publicId: order.public_id };
+            // const order = await axios
+            //   .post("/createOrder", order_details)
+            //   .then((res) => {
+            //     return res.data;
+            //   });
+            return { publicId: "6e70c5b1-a3d4-43c5-a84d-fa41c883af84" };
           } catch (error) {
             console.log("Error creating Revolut payment:", error.message);
             throw error; // Re-throw the error to be caught by the caller if needed
