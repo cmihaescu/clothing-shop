@@ -29,12 +29,10 @@ export const Checkout = () => {
         currency, // 3-letter currency code
         totalAmount: order_details.amount, // in lowest denomination e.g., cents
         redirectUrls: {
-          success:
-            "https://revolut-merchant-api-test-shop.netlify.app//success",
-          failure:
-            "https://revolut-merchant-api-test-shop.netlify.app//failure",
+          success: "https://revolut-merchant-api-test-shop.netlify.app/success",
+          failure: "https://revolut-merchant-api-test-shop.netlify.app/failure",
           cancel:
-            "https://revolut-merchant-api-test-shop.netlify.app//cancellation",
+            "https://revolut-merchant-api-test-shop.netlify.app/cancellation",
         },
         createOrder: async () => {
           try {
