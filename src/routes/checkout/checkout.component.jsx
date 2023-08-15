@@ -36,7 +36,7 @@ export const Checkout = () => {
         createOrder: async () => {
           try {
             const order = await axios
-              .post("http://localhost:4000/createOrder", order_details)
+              .post("api/createOrder", order_details)
               .then((res) => {
                 return res.data;
               });
