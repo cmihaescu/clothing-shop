@@ -7,7 +7,6 @@ const API_KEY_SANDBOX = process.env.API_KEY_SANDBOX;
 /* Create order */
 router.post("/", function (req, res, next) {
   let order_details = req.body;
-  console.log(order_details);
   let config = {
     method: "post",
     maxBodyLength: Infinity,

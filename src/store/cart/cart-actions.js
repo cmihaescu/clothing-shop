@@ -34,7 +34,6 @@ export const createOrderIdAsync = (order_details) => async (dispatch) => {
   dispatch(updateCartOrderIdStart());
   try {
     const order = await createOrder(order_details);
-    console.log("thunk function: ", order);
     dispatch(updateCartOrderIdSuccess(order.id));
     return order;
   } catch (error) {

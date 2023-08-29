@@ -4,7 +4,6 @@ export const createOrder = async (orderDetails) => {
   let order = await axios
     .post("/createOrder", orderDetails)
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((err) => {

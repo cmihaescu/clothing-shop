@@ -18,13 +18,6 @@ const createOrderRouter = require("./routes/revolut-router");
 
 app.use("/createOrder", createOrderRouter);
 
-app.get("/", (req, res) => res.sendFile(`${__dirname}/index.html`));
-
-app.post("/registration", (req, res) => {
-  console.log(req.body);
-  res.json({ test: "test" });
-});
-
 const options = {
   key: fs.readFileSync("key.pem"),
   cert: fs.readFileSync("cert.pem"),
