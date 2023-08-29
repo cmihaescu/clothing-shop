@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export const createOrder = async (orderDetails) => {
-  let order_id = await axios
+  let order = await axios
     .post("/createOrder", orderDetails)
     .then((res) => {
       console.log(res.data);
-      return res.data.id;
+      return res.data;
     })
     .catch((err) => {
       console.error(
@@ -13,5 +13,6 @@ export const createOrder = async (orderDetails) => {
         err
       );
     });
-  return order_id;
+  return order;
+  // return { publicId: order.public_id };
 };

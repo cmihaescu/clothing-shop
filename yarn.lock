@@ -2359,6 +2359,11 @@
   resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.7.1.tgz"
   integrity sha512-bgVQM4ZJ2u2CM8k1ey70o1ePFXsEzYVZoWghh6WjM8p59jQ7HxzbHW4SbnWFG7V9ig9chLawQxDTZ3xzOF8MkQ==
 
+"@revolut/checkout@^1.1.16":
+  version "1.1.16"
+  resolved "https://registry.npmjs.org/@revolut/checkout/-/checkout-1.1.16.tgz"
+  integrity sha512-x7HVsVweUNaJNb0MomnNrk58sX/nPrFXH66PhvcSJiYlJJubZgPyzidAIMIrl5gClXCFxBA2UdvTlOoazfSjNw==
+
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.1"
   resolved "https://registry.npmjs.org/@rollup/plugin-babel/-/plugin-babel-5.3.1.tgz"
