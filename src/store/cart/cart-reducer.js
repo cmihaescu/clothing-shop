@@ -7,6 +7,7 @@ const {
   UPDATE_ORDER_ID_START,
   UPDATE_ORDER_ID_SUCCESS,
   UPDATE_ORDER_ID_FAILURE,
+  CLEAR_CART,
 } = CART_ACTION_TYPES;
 
 export const CART_INITIAL_STATE = {
@@ -56,6 +57,13 @@ export const cartReducer = (state = CART_INITIAL_STATE, action = {}) => {
       return {
         ...state,
         creatingOrder: false,
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        cartItems: [],
+        totalItems: 0,
+        totalPrice: 0,
       };
     default:
       return state;

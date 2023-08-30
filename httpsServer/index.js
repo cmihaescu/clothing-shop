@@ -14,9 +14,9 @@ app.use(cors());
 
 //Routes
 
-const createOrderRouter = require("./routes/revolut-router");
+const revolutRouter = require("./routes/revolut-router");
 
-app.use("/createOrder", createOrderRouter);
+app.use("/", revolutRouter);
 
 const options = {
   key: fs.readFileSync("key.pem"),

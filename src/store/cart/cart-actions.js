@@ -9,6 +9,7 @@ const {
   UPDATE_ORDER_ID_START,
   UPDATE_ORDER_ID_SUCCESS,
   UPDATE_ORDER_ID_FAILURE,
+  CLEAR_CART,
 } = CART_ACTION_TYPES;
 
 export const setCurrency = (currency) => {
@@ -17,6 +18,10 @@ export const setCurrency = (currency) => {
 
 export const setCartDropdown = (cartDropdown) => {
   return createAction(SET_CART_DROPDOWN, cartDropdown);
+};
+
+export const clearCart = () => {
+  return createAction(CLEAR_CART);
 };
 
 export const updateCart = (cart) => {

@@ -5,7 +5,6 @@ import {
   currencySelector,
   cartItemsSelector,
   cartTotalPriceSelector,
-  cartOrderId,
 } from "../../store/cart/cart-selectors";
 import { createOrderIdAsync } from "../../store/cart/cart-actions";
 import RevolutCheckout from "@revolut/checkout";
@@ -16,7 +15,6 @@ export const Checkout = () => {
   const currency = useSelector(currencySelector);
   const cartItems = useSelector(cartItemsSelector);
   const totalPrice = useSelector(cartTotalPriceSelector);
-  const order = useSelector(cartOrderId);
 
   useEffect(() => {
     let canceled = false;
@@ -40,7 +38,7 @@ export const Checkout = () => {
         redirectUrls: {
           success: "http://localhost:3000/success",
           failure: "http://localhost:3000/failure",
-          cancel: "http://localhost:3000/cancellation",
+          cancel: "http://localhost:3000/checkout",
         },
         createOrder: async () => {
           let order = await dispatch(createOrderIdAsync(orderDetails));
