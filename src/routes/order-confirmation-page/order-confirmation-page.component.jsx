@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import { retrieveOrder } from "../../utils/revolutAPI.utils";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../store/cart/cart-actions";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./order-confirmation-page.styles.scss";
 
 export const OrderConfirmationPage = ({ orderId }) => {
   const [orderSuccess, setOrderSuccess] = useState("initial");
   const dispatch = useDispatch();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const queryFailureMessage = queryParams.get("_rp_fr");
   const successfulParagraph = `Thank you for your order. The payment was successful. Order ID is ${orderId}`;
-  const failureParagraph = `Unfortunately the payment failed or was declined by your bank. Order ID is ${orderId}. Your cart has not been cleared so please try again with another card or reach out to your bank. If issue persists, please contact the merchant.`;
+  const failureParagraph = `${queryFailureMessage}. Order ID is ${orderId}. Your cart has not been cleared in case you wish to try with another card`;
 
   useEffect(() => {
     const fetchOrder = async () => {
