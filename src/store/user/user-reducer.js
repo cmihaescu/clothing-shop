@@ -1,6 +1,5 @@
 import { USER_ACTION_TYPES } from "./user-types";
-const { SET_CURRENT_USER, SIGN_IN_SUCCESS, SIGN_IN_FAILURE } =
-  USER_ACTION_TYPES;
+const { SET_CURRENT_USER, SIGN_IN_SUCCESS, SIGN_IN_FAILED } = USER_ACTION_TYPES;
 
 const INITIAL_STATE = {
   currentUser: null,
@@ -17,7 +16,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         currentUser: payload,
       };
-    case SIGN_IN_FAILURE:
+    case SIGN_IN_FAILED:
       return { ...state, error: payload };
     default:
       return state;
