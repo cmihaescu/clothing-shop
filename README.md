@@ -1,70 +1,15 @@
-# Getting Started with Create React App
+# Online Shop mock-up
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It has 4 branches of which 3 are relevant to my development. In this e-shop I used React with useContext (first branch), then Redux with Thunk (second branch) and Redux with Saga (third branch). For styling I used SCSS. I chose SCSS and not SASS as I find the syntax more readable. 
 
-## Available Scripts
+## What I have learned
 
-In the project directory, you can run:
+It has been a very good opportunity to better understand and deep dive into the React framework, React hooks (useState, useEffect, useContext, useNavigate, useParams, useLocation, useMemo) and the way it works with Redux. I also learned how to use React-Router, middleware like thunk (which I loved btw as it basically allows you to make backend calls before updating your website's state) or Saga (can't say I am a big fan as it looks to overcomplicate the website). Also upskilled my styling skills by using SCSS (was only familiar with vanilla CSS).
 
-### `npm start`
+Also added the [Revolut Pay checkout SDK](https://developer.revolut.com/docs/sdks/revolut-checkout-js/initialize-widget/revolut-checkout-payments/revolut-checkout-payments-revolut-pay2) which needed me to develop a backend side to this project, as the SDK uses an API KEY in order to make the payment work. Of course this API_KEY can't be sent from the FE as it would be bad practice.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+For the backend I used node.js with Express. It is not very complex. Just built some routes in order to make the merchant API from Revolut work to create orders and track order state.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+I can only say it has been very exciting and fulfilling to work on this repository!
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Future plans are to publish this on a live server.
