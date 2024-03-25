@@ -26,7 +26,7 @@ export const Checkout = () => {
     RevolutCheckout.payments({
       locale: "en", // Optional, defaults to 'en'
       mode: "sandbox", // Optional, defaults to 'prod'
-      publicToken: "pk_I0esVl3WyXynj8t3TeEOyAQRHC4I8gmLffztYRy981Gsw4xH", // Merchant public API key
+      publicToken: process.env.REACT_APP_REVOLUT_PK, // Merchant public API key
     }).then((paymentInstance) => {
       if (canceled) {
         return;
@@ -36,13 +36,13 @@ export const Checkout = () => {
         currency, // 3-letter currency code
         totalAmount: orderDetails.amount, // in lowest denomination e.g., cents
         redirectUrls: {
-          success: "http://localhost:3000/success",
-          failure: "http://localhost:3000/failure",
-          cancel: "http://localhost:3000/checkout",
+          success: "http://localhost:8888/success",
+          failure: "http://localhost:8888/failure",
+          cancel: "http://localhost:8888/checkout",
         },
         createOrder: async () => {
           let order = await dispatch(createOrderIdAsync(orderDetails));
-          return { publicId: order.public_id };
+          return { publicId: order.token };
         },
       };
 

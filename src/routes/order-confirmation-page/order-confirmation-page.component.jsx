@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { retrieveOrder } from "../../utils/revolutAPI.utils";
+import { apiClientRevolutOrders } from "../../utils/revolutAPI.utils";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../store/cart/cart-actions";
 import { Link, useLocation } from "react-router-dom";
@@ -16,12 +16,15 @@ export const OrderConfirmationPage = ({ orderId }) => {
 
   useEffect(() => {
     const fetchOrder = async () => {
-      let order = await retrieveOrder(orderId);
+      let order = await apiClientRevolutOrders("get", orderId, "retrieve");
       return order;
     };
     fetchOrder()
       .then((order) => {
-        if (order.state === "COMPLETED" || order.state === "AUTHORISED") {
+        if (
+          order.state.toLowerCase() === "completed" ||
+          order.state === "authorised"
+        ) {
           setOrderSuccess(true);
           dispatch(clearCart());
         } else {

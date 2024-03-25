@@ -1,33 +1,22 @@
 import axios from "axios";
 
-//CREATE ORDER API//
-export const createOrder = async (orderDetails) => {
-  let order = await axios
-    .post("/createOrder", orderDetails)
+export const apiClientRevolutOrders = async (method, body, apiAction) => {
+  let order = await axios("/.netlify/functions/api-client", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: { body, method, apiAction },
+  })
     .then((res) => {
       return res.data;
     })
     .catch((err) => {
       console.error(
-        "An error occurred while trying to create the order: ",
+        `An error occured while trying to ${apiAction} the order: `,
         err
       );
     });
-  return order;
-};
 
-//RETRIEVE ORDER API//
-export const retrieveOrder = async (orderId) => {
-  let order = await axios
-    .post("/retrieveOrder", { orderId })
-    .then((res) => {
-      return res.data;
-    })
-    .catch((err) => {
-      console.error(
-        "An error occurred while trying to retrieve the order: ",
-        err
-      );
-    });
   return order;
 };
