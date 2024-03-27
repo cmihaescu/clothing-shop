@@ -1,6 +1,6 @@
 # Online Shop mock-up
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It has 4 branches of which 3 are relevant to my development. In this e-shop I used React with useContext (first branch), then Redux with Thunk (second branch) and Redux with Saga (third branch). For styling I used SCSS. I chose SCSS and not SASS as I find the syntax more readable. 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It has 5 branches of which 3 are relevant to my development. In this e-shop I used React with useContext (first branch), then Redux with Thunk (second branch) and Redux with Saga (third branch). For styling I used SCSS. I chose SCSS and not SASS as I find the syntax more readable. 
 
 The most complex branch can be visited [here](https://revolut-merchant-test-shop.netlify.app/) - redux for state management, react for components, serverless functions as backend and firebase as database
 
