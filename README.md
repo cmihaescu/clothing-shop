@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It has 4 branches of which 3 are relevant to my development. In this e-shop I used React with useContext (first branch), then Redux with Thunk (second branch) and Redux with Saga (third branch). For styling I used SCSS. I chose SCSS and not SASS as I find the syntax more readable. 
 
+The most complex branch can be visited [here](https://revolut-merchant-test-shop.netlify.app/) - redux for state management, react for components, serverless functions as backend and firebase as database
+
 ## What I have learned
 
 It has been a very good opportunity to better understand and deep dive into the React framework, React hooks (useState, useEffect, useContext, useNavigate, useParams, useLocation, useMemo) and the way it works with Redux. I also learned how to use React-Router, middleware like thunk (which I loved btw as it basically allows you to make backend calls before updating your website's state) or Saga (can't say I am a big fan as it looks to overcomplicate the website). Also upskilled my styling skills by using SCSS (was only familiar with vanilla CSS).
